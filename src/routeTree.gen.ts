@@ -9,10 +9,17 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TreinoRouteImport } from './routes/treino'
 import { Route as EvolucaoRouteImport } from './routes/evolucao'
 import { Route as DietaRouteImport } from './routes/dieta'
+import { Route as ConquistasRouteImport } from './routes/conquistas'
 import { Route as IndexRouteImport } from './routes/index'
 
+const TreinoRoute = TreinoRouteImport.update({
+  id: '/treino',
+  path: '/treino',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const EvolucaoRoute = EvolucaoRouteImport.update({
   id: '/evolucao',
   path: '/evolucao',
@@ -23,6 +30,11 @@ const DietaRoute = DietaRouteImport.update({
   path: '/dieta',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ConquistasRoute = ConquistasRouteImport.update({
+  id: '/conquistas',
+  path: '/conquistas',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -31,36 +43,51 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/conquistas': typeof ConquistasRoute
   '/dieta': typeof DietaRoute
   '/evolucao': typeof EvolucaoRoute
+  '/treino': typeof TreinoRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/conquistas': typeof ConquistasRoute
   '/dieta': typeof DietaRoute
   '/evolucao': typeof EvolucaoRoute
+  '/treino': typeof TreinoRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/conquistas': typeof ConquistasRoute
   '/dieta': typeof DietaRoute
   '/evolucao': typeof EvolucaoRoute
+  '/treino': typeof TreinoRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/dieta' | '/evolucao'
+  fullPaths: '/' | '/conquistas' | '/dieta' | '/evolucao' | '/treino'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/dieta' | '/evolucao'
-  id: '__root__' | '/' | '/dieta' | '/evolucao'
+  to: '/' | '/conquistas' | '/dieta' | '/evolucao' | '/treino'
+  id: '__root__' | '/' | '/conquistas' | '/dieta' | '/evolucao' | '/treino'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ConquistasRoute: typeof ConquistasRoute
   DietaRoute: typeof DietaRoute
   EvolucaoRoute: typeof EvolucaoRoute
+  TreinoRoute: typeof TreinoRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/treino': {
+      id: '/treino'
+      path: '/treino'
+      fullPath: '/treino'
+      preLoaderRoute: typeof TreinoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/evolucao': {
       id: '/evolucao'
       path: '/evolucao'
@@ -75,6 +102,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DietaRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/conquistas': {
+      id: '/conquistas'
+      path: '/conquistas'
+      fullPath: '/conquistas'
+      preLoaderRoute: typeof ConquistasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -87,8 +121,10 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ConquistasRoute: ConquistasRoute,
   DietaRoute: DietaRoute,
   EvolucaoRoute: EvolucaoRoute,
+  TreinoRoute: TreinoRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
