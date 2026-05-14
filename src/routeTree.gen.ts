@@ -9,9 +9,15 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as EvolucaoRouteImport } from './routes/evolucao'
 import { Route as DietaRouteImport } from './routes/dieta'
 import { Route as IndexRouteImport } from './routes/index'
 
+const EvolucaoRoute = EvolucaoRouteImport.update({
+  id: '/evolucao',
+  path: '/evolucao',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DietaRoute = DietaRouteImport.update({
   id: '/dieta',
   path: '/dieta',
@@ -26,31 +32,42 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/dieta': typeof DietaRoute
+  '/evolucao': typeof EvolucaoRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/dieta': typeof DietaRoute
+  '/evolucao': typeof EvolucaoRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/dieta': typeof DietaRoute
+  '/evolucao': typeof EvolucaoRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/dieta'
+  fullPaths: '/' | '/dieta' | '/evolucao'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/dieta'
-  id: '__root__' | '/' | '/dieta'
+  to: '/' | '/dieta' | '/evolucao'
+  id: '__root__' | '/' | '/dieta' | '/evolucao'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   DietaRoute: typeof DietaRoute
+  EvolucaoRoute: typeof EvolucaoRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/evolucao': {
+      id: '/evolucao'
+      path: '/evolucao'
+      fullPath: '/evolucao'
+      preLoaderRoute: typeof EvolucaoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/dieta': {
       id: '/dieta'
       path: '/dieta'
@@ -71,6 +88,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DietaRoute: DietaRoute,
+  EvolucaoRoute: EvolucaoRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
