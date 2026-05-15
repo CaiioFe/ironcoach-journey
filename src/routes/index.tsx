@@ -6,6 +6,7 @@ import { paciente, progressoObjetivo } from "@/data/paciente";
 import { pesoSerie } from "@/data/evolucao";
 import { refeicoesHoje } from "@/data/dieta";
 import { StatCard } from "@/components/iron/StatCard";
+import { InstallPrompt } from "@/components/iron/InstallPrompt";
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/")({ component: Home });
@@ -16,6 +17,7 @@ function Home() {
 
   return (
     <div className="px-4 pt-6 space-y-4">
+      <InstallPrompt />
       {/* greeting */}
       <div className="flex items-center justify-between px-1">
         <div>
