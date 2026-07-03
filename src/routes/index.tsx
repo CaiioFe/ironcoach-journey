@@ -2,9 +2,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { Flame, Star, Scale, Activity, Video, Award, ChevronRight, Utensils } from "lucide-react";
 import { Area, AreaChart, ResponsiveContainer, Tooltip, XAxis } from "recharts";
-import { paciente, progressoObjetivo } from "@/data/paciente";
 import { pesoSerie } from "@/data/evolucao";
-import { refeicoesHoje } from "@/data/dieta";
+import { useAppStore, progressoObjetivo } from "@/store/useAppStore";
 import { StatCard } from "@/components/iron/StatCard";
 import { InstallPrompt } from "@/components/iron/InstallPrompt";
 import { toast } from "sonner";
@@ -12,8 +11,10 @@ import { toast } from "sonner";
 export const Route = createFileRoute("/")({ component: Home });
 
 function Home() {
-  const progress = progressoObjetivo();
-  const proxRefeicao = refeicoesHoje.find((r) => !r.feita) ?? refeicoesHoje[0];
+  const paciente = useAppStore((s) => s.paciente);
+  const refeicoes = useAppStore((s) => s.refeicoes);
+  const progress = progressoObjetivo(paciente);
+  const proxRefeicao = refeicoes.find((r) => !r.feita) ?? refeicoes[0];
 
   return (
     <div className="px-4 pt-6 space-y-4">
