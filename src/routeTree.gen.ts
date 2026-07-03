@@ -15,6 +15,7 @@ import { Route as EvolucaoRouteImport } from './routes/evolucao'
 import { Route as DietaRouteImport } from './routes/dieta'
 import { Route as ConquistasRouteImport } from './routes/conquistas'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as NutriIndexRouteImport } from './routes/nutri/index'
 
 const TreinoRoute = TreinoRouteImport.update({
   id: '/treino',
@@ -46,6 +47,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const NutriIndexRoute = NutriIndexRouteImport.update({
+  id: '/nutri/',
+  path: '/nutri/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -54,6 +60,7 @@ export interface FileRoutesByFullPath {
   '/evolucao': typeof EvolucaoRoute
   '/login': typeof LoginRoute
   '/treino': typeof TreinoRoute
+  '/nutri/': typeof NutriIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -62,6 +69,7 @@ export interface FileRoutesByTo {
   '/evolucao': typeof EvolucaoRoute
   '/login': typeof LoginRoute
   '/treino': typeof TreinoRoute
+  '/nutri': typeof NutriIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -71,12 +79,27 @@ export interface FileRoutesById {
   '/evolucao': typeof EvolucaoRoute
   '/login': typeof LoginRoute
   '/treino': typeof TreinoRoute
+  '/nutri/': typeof NutriIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/conquistas' | '/dieta' | '/evolucao' | '/login' | '/treino'
+  fullPaths:
+    | '/'
+    | '/conquistas'
+    | '/dieta'
+    | '/evolucao'
+    | '/login'
+    | '/treino'
+    | '/nutri/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/conquistas' | '/dieta' | '/evolucao' | '/login' | '/treino'
+  to:
+    | '/'
+    | '/conquistas'
+    | '/dieta'
+    | '/evolucao'
+    | '/login'
+    | '/treino'
+    | '/nutri'
   id:
     | '__root__'
     | '/'
@@ -85,6 +108,7 @@ export interface FileRouteTypes {
     | '/evolucao'
     | '/login'
     | '/treino'
+    | '/nutri/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -94,6 +118,7 @@ export interface RootRouteChildren {
   EvolucaoRoute: typeof EvolucaoRoute
   LoginRoute: typeof LoginRoute
   TreinoRoute: typeof TreinoRoute
+  NutriIndexRoute: typeof NutriIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -140,6 +165,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/nutri/': {
+      id: '/nutri/'
+      path: '/nutri'
+      fullPath: '/nutri/'
+      preLoaderRoute: typeof NutriIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -150,6 +182,7 @@ const rootRouteChildren: RootRouteChildren = {
   EvolucaoRoute: EvolucaoRoute,
   LoginRoute: LoginRoute,
   TreinoRoute: TreinoRoute,
+  NutriIndexRoute: NutriIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
