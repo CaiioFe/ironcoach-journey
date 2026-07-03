@@ -6,11 +6,16 @@ import {
   useRouter,
   HeadContent,
   Scripts,
+  useLocation,
+  useNavigate,
 } from "@tanstack/react-router";
+import { useEffect } from "react";
+import { LogOut } from "lucide-react";
 
 import appCss from "../styles.css?url";
 import { BottomNav } from "@/components/iron/BottomNav";
 import { Toaster } from "sonner";
+import { useAppStore } from "@/store/useAppStore";
 
 function NotFoundComponent() {
   return (
@@ -127,13 +132,35 @@ function RootShell({ children }: { children: React.ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const role = useAppStore((s) => s.role);
+  const logout = useAppStore((s) => s.logout);
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (role === null && location.pathname !== "/login") {
+      navigate({ to: "/login" });
+    }
+  }, [role, location.pathname, navigate]);
+
+  const onLogin = location.pathname === "/login";
+  const showLogout = role !== null && !onLogin;
 
   return (
     <QueryClientProvider client={queryClient}>
       <div className="min-h-screen bg-background">
         <div className="mx-auto w-full max-w-[430px] min-h-screen relative pb-28 border-x border-border/40">
+          {showLogout && (
+            <button
+              onClick={() => { logout(); navigate({ to: "/login" }); }}
+              className="absolute top-4 right-4 z-40 size-9 rounded-xl bg-card/80 backdrop-blur border border-border grid place-items-center text-muted-foreground"
+              aria-label="Sair"
+            >
+              <LogOut className="size-4" />
+            </button>
+          )}
           <Outlet />
-          <BottomNav />
+          {role === "aluno" && <BottomNav />}
         </div>
         <Toaster position="top-center" theme="dark" richColors />
       </div>

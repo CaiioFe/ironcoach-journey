@@ -2,13 +2,14 @@ import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { Lock, Star, Gift } from "lucide-react";
 import { badges, premios } from "@/data/conquistas";
-import { paciente } from "@/data/paciente";
+import { useAppStore } from "@/store/useAppStore";
 import { PageHeader } from "@/components/iron/PageHeader";
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/conquistas")({ component: Conquistas });
 
 function Conquistas() {
+  const paciente = useAppStore((s) => s.paciente);
   const pct = Math.round((paciente.pontos / paciente.pontosProxNivel) * 100);
   return (
     <div className="pb-4">

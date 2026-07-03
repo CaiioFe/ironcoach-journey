@@ -2,7 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Check, Star, Repeat, Clock, Flame } from "lucide-react";
-import { refeicoesHoje as initial, substituicoes, type Refeicao } from "@/data/dieta";
+import { substituicoes } from "@/data/dieta";
+import { useAppStore } from "@/store/useAppStore";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription } from "@/components/ui/sheet";
 import { toast } from "sonner";
 import { PageHeader } from "@/components/iron/PageHeader";
@@ -11,7 +12,8 @@ export const Route = createFileRoute("/dieta")({ component: Dieta });
 
 function Dieta() {
   const [tab, setTab] = useState<"hoje" | "semana" | "plano">("hoje");
-  const [refeicoes, setRefeicoes] = useState<Refeicao[]>(initial);
+  const refeicoes = useAppStore((s) => s.refeicoes);
+  const updateRefeicao = useAppStore((s) => s.updateRefeicao);
   const [subOpen, setSubOpen] = useState<string | null>(null);
   const [rateOpen, setRateOpen] = useState<string | null>(null);
   const [stars, setStars] = useState(0);
@@ -19,7 +21,8 @@ function Dieta() {
   const feitas = refeicoes.filter((r) => r.feita).length;
 
   const toggleFeita = (id: string) => {
-    setRefeicoes((prev) => prev.map((r) => r.id === id ? { ...r, feita: !r.feita } : r));
+    const r = refeicoes.find((x) => x.id === id);
+    if (r) updateRefeicao(id, { feita: !r.feita });
     toast.success("Refeição marcada · +20 ⭐");
   };
 

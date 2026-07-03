@@ -2,13 +2,14 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Check, ChevronDown, Play, Dumbbell, Clock } from "lucide-react";
-import { treinosSemana } from "@/data/treino";
+import { useAppStore } from "@/store/useAppStore";
 import { PageHeader } from "@/components/iron/PageHeader";
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/treino")({ component: Treino });
 
 function Treino() {
+  const treinosSemana = useAppStore((s) => s.treinos);
   const [open, setOpen] = useState<string | null>("qui");
   const [feitos, setFeitos] = useState(treinosSemana.filter(t => t.feito).map(t => t.id));
 

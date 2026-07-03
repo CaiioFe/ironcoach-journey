@@ -10,14 +10,21 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TreinoRouteImport } from './routes/treino'
+import { Route as LoginRouteImport } from './routes/login'
 import { Route as EvolucaoRouteImport } from './routes/evolucao'
 import { Route as DietaRouteImport } from './routes/dieta'
 import { Route as ConquistasRouteImport } from './routes/conquistas'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as NutriIndexRouteImport } from './routes/nutri/index'
 
 const TreinoRoute = TreinoRouteImport.update({
   id: '/treino',
   path: '/treino',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EvolucaoRoute = EvolucaoRouteImport.update({
@@ -40,20 +47,29 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const NutriIndexRoute = NutriIndexRouteImport.update({
+  id: '/nutri/',
+  path: '/nutri/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/conquistas': typeof ConquistasRoute
   '/dieta': typeof DietaRoute
   '/evolucao': typeof EvolucaoRoute
+  '/login': typeof LoginRoute
   '/treino': typeof TreinoRoute
+  '/nutri/': typeof NutriIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/conquistas': typeof ConquistasRoute
   '/dieta': typeof DietaRoute
   '/evolucao': typeof EvolucaoRoute
+  '/login': typeof LoginRoute
   '/treino': typeof TreinoRoute
+  '/nutri': typeof NutriIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -61,14 +77,38 @@ export interface FileRoutesById {
   '/conquistas': typeof ConquistasRoute
   '/dieta': typeof DietaRoute
   '/evolucao': typeof EvolucaoRoute
+  '/login': typeof LoginRoute
   '/treino': typeof TreinoRoute
+  '/nutri/': typeof NutriIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/conquistas' | '/dieta' | '/evolucao' | '/treino'
+  fullPaths:
+    | '/'
+    | '/conquistas'
+    | '/dieta'
+    | '/evolucao'
+    | '/login'
+    | '/treino'
+    | '/nutri/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/conquistas' | '/dieta' | '/evolucao' | '/treino'
-  id: '__root__' | '/' | '/conquistas' | '/dieta' | '/evolucao' | '/treino'
+  to:
+    | '/'
+    | '/conquistas'
+    | '/dieta'
+    | '/evolucao'
+    | '/login'
+    | '/treino'
+    | '/nutri'
+  id:
+    | '__root__'
+    | '/'
+    | '/conquistas'
+    | '/dieta'
+    | '/evolucao'
+    | '/login'
+    | '/treino'
+    | '/nutri/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -76,7 +116,9 @@ export interface RootRouteChildren {
   ConquistasRoute: typeof ConquistasRoute
   DietaRoute: typeof DietaRoute
   EvolucaoRoute: typeof EvolucaoRoute
+  LoginRoute: typeof LoginRoute
   TreinoRoute: typeof TreinoRoute
+  NutriIndexRoute: typeof NutriIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -86,6 +128,13 @@ declare module '@tanstack/react-router' {
       path: '/treino'
       fullPath: '/treino'
       preLoaderRoute: typeof TreinoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/evolucao': {
@@ -116,6 +165,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/nutri/': {
+      id: '/nutri/'
+      path: '/nutri'
+      fullPath: '/nutri/'
+      preLoaderRoute: typeof NutriIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -124,7 +180,9 @@ const rootRouteChildren: RootRouteChildren = {
   ConquistasRoute: ConquistasRoute,
   DietaRoute: DietaRoute,
   EvolucaoRoute: EvolucaoRoute,
+  LoginRoute: LoginRoute,
   TreinoRoute: TreinoRoute,
+  NutriIndexRoute: NutriIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
