@@ -72,14 +72,9 @@ function NutriPanel() {
 
   return (
     <div className="pb-8">
-      <div className="px-5 pt-6 pb-4 flex items-start justify-between">
-        <div>
-          <h1 className="text-2xl font-bold">Olá, Gabriel 👋</h1>
-          <p className="text-sm text-muted-foreground mt-1">Painel do nutricionista</p>
-        </div>
-        <button onClick={sair} className="size-9 rounded-xl border border-border grid place-items-center text-muted-foreground">
-          <LogOut className="size-4" />
-        </button>
+      <div className="px-5 pt-6 pb-4 pr-16">
+        <h1 className="text-2xl font-bold">Olá, Gabriel 👋</h1>
+        <p className="text-sm text-muted-foreground mt-1">Painel do nutricionista</p>
       </div>
 
       <div className="px-4">
