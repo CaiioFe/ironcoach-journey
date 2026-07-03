@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TreinoRouteImport } from './routes/treino'
+import { Route as LoginRouteImport } from './routes/login'
 import { Route as EvolucaoRouteImport } from './routes/evolucao'
 import { Route as DietaRouteImport } from './routes/dieta'
 import { Route as ConquistasRouteImport } from './routes/conquistas'
@@ -18,6 +19,11 @@ import { Route as IndexRouteImport } from './routes/index'
 const TreinoRoute = TreinoRouteImport.update({
   id: '/treino',
   path: '/treino',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EvolucaoRoute = EvolucaoRouteImport.update({
@@ -46,6 +52,7 @@ export interface FileRoutesByFullPath {
   '/conquistas': typeof ConquistasRoute
   '/dieta': typeof DietaRoute
   '/evolucao': typeof EvolucaoRoute
+  '/login': typeof LoginRoute
   '/treino': typeof TreinoRoute
 }
 export interface FileRoutesByTo {
@@ -53,6 +60,7 @@ export interface FileRoutesByTo {
   '/conquistas': typeof ConquistasRoute
   '/dieta': typeof DietaRoute
   '/evolucao': typeof EvolucaoRoute
+  '/login': typeof LoginRoute
   '/treino': typeof TreinoRoute
 }
 export interface FileRoutesById {
@@ -61,14 +69,22 @@ export interface FileRoutesById {
   '/conquistas': typeof ConquistasRoute
   '/dieta': typeof DietaRoute
   '/evolucao': typeof EvolucaoRoute
+  '/login': typeof LoginRoute
   '/treino': typeof TreinoRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/conquistas' | '/dieta' | '/evolucao' | '/treino'
+  fullPaths: '/' | '/conquistas' | '/dieta' | '/evolucao' | '/login' | '/treino'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/conquistas' | '/dieta' | '/evolucao' | '/treino'
-  id: '__root__' | '/' | '/conquistas' | '/dieta' | '/evolucao' | '/treino'
+  to: '/' | '/conquistas' | '/dieta' | '/evolucao' | '/login' | '/treino'
+  id:
+    | '__root__'
+    | '/'
+    | '/conquistas'
+    | '/dieta'
+    | '/evolucao'
+    | '/login'
+    | '/treino'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -76,6 +92,7 @@ export interface RootRouteChildren {
   ConquistasRoute: typeof ConquistasRoute
   DietaRoute: typeof DietaRoute
   EvolucaoRoute: typeof EvolucaoRoute
+  LoginRoute: typeof LoginRoute
   TreinoRoute: typeof TreinoRoute
 }
 
@@ -86,6 +103,13 @@ declare module '@tanstack/react-router' {
       path: '/treino'
       fullPath: '/treino'
       preLoaderRoute: typeof TreinoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/evolucao': {
@@ -124,6 +148,7 @@ const rootRouteChildren: RootRouteChildren = {
   ConquistasRoute: ConquistasRoute,
   DietaRoute: DietaRoute,
   EvolucaoRoute: EvolucaoRoute,
+  LoginRoute: LoginRoute,
   TreinoRoute: TreinoRoute,
 }
 export const routeTree = rootRouteImport

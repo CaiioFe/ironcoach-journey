@@ -17,8 +17,8 @@ function Login() {
   const role = useAppStore((s) => s.role);
   const [sel, setSel] = useState<"aluno" | "nutri">("aluno");
   const p = perfis[sel];
-  const [email, setEmail] = useState(p.email);
-  const [senha, setSenha] = useState(p.senha);
+  const [email, setEmail] = useState<string>(p.email);
+  const [senha, setSenha] = useState<string>(p.senha);
 
   useEffect(() => {
     setEmail(perfis[sel].email);
