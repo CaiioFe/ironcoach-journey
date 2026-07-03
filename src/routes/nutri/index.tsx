@@ -19,7 +19,6 @@ function NutriPanel() {
   const removeRefeicao = useAppStore((s) => s.removeRefeicao);
   const updateTreino = useAppStore((s) => s.updateTreino);
   const login = useAppStore((s) => s.login);
-  const logout = useAppStore((s) => s.logout);
 
   const [open, setOpen] = useState(false);
   const progress = progressoObjetivo(paciente);
@@ -51,7 +50,6 @@ function NutriPanel() {
     navigate({ to: "/" });
   };
 
-  void logout;
 
   const field = (label: string, key: keyof typeof form, type: "text" | "number" = "number") => (
     <div>
