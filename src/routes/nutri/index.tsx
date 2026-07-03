@@ -1,7 +1,7 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { LogOut, Pencil, Eye, Plus, Trash2, Scale, Target, Activity, Flame, Star } from "lucide-react";
+import { Pencil, Eye, Plus, Trash2, Scale, Target, Activity, Flame, Star } from "lucide-react";
 import { useAppStore, progressoObjetivo } from "@/store/useAppStore";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription } from "@/components/ui/sheet";
 import { toast } from "sonner";
@@ -51,10 +51,7 @@ function NutriPanel() {
     navigate({ to: "/" });
   };
 
-  const sair = () => {
-    logout();
-    navigate({ to: "/login" });
-  };
+  void logout;
 
   const field = (label: string, key: keyof typeof form, type: "text" | "number" = "number") => (
     <div>
