@@ -21,14 +21,13 @@
 
 ## Visão do nutricionista
 
+<img src="screenshots/06-painel-nutricionista.png" /><br><sub>Painel: visão geral do paciente, plano alimentar e atalho pra "ver como aluno"</sub>
+
 <table>
 <tr>
-<td width="50%"><img src="screenshots/06-painel-nutricionista.png" /><br><sub>Painel: visão geral do paciente, com atalho pra "ver como aluno"</sub></td>
-<td width="50%"><img src="screenshots/07-editar-dados.png" /><br><sub>Editar dados: métricas e próxima consulta</sub></td>
-</tr>
-<tr>
-<td width="50%"><img src="screenshots/08-refeicoes.png" /><br><sub>Editar refeições do plano alimentar</sub></td>
-<td width="50%"><img src="screenshots/09-treinos-edit.png" /><br><sub>Editar treinos da semana</sub></td>
+<td width="33%"><img src="screenshots/07-editar-dados.png" /><br><sub>Editar dados: métricas e próxima consulta</sub></td>
+<td width="33%"><img src="screenshots/08-refeicoes.png" /><br><sub>Editar refeições do plano alimentar</sub></td>
+<td width="33%"><img src="screenshots/09-treinos-edit.png" /><br><sub>Editar treinos da semana</sub></td>
 </tr>
 </table>
 
