@@ -2,7 +2,16 @@
 
 > Protótipo de app de acompanhamento nutricional, feito sob medida para a Iron Nutrição Esportiva — visibilidade total da jornada do paciente na palma da mão.
 
-![Home](screenshots/01-home.png)
+<table>
+<tr>
+<td width="50%"><img src="screenshots/01-home.png" /><br><sub>Home: progresso, próxima consulta e KPIs do dia</sub></td>
+<td width="50%"><img src="screenshots/02-dieta.png" /><br><sub>Dieta: refeições do dia com macros</sub></td>
+</tr>
+<tr>
+<td width="50%"><img src="screenshots/03-evolucao.png" /><br><sub>Evolução: comparativo de fotos e gráfico de peso</sub></td>
+<td width="50%"><img src="screenshots/04-treino.png" /><br><sub>Treino: semana por grupo muscular</sub></td>
+</tr>
+</table>
 
 ## Sobre
 
