@@ -2,6 +2,8 @@
 
 > Protótipo de app de acompanhamento nutricional, feito sob medida para a Iron Nutrição Esportiva — visibilidade total da jornada do paciente na palma da mão.
 
+## Visão do aluno
+
 <table>
 <tr>
 <td width="50%"><img src="screenshots/01-home.png" /><br><sub>Home: progresso, próxima consulta e KPIs do dia</sub></td>
@@ -13,7 +15,20 @@
 </tr>
 <tr>
 <td width="50%"><img src="screenshots/05-premios.png" /><br><sub>Prêmios: nível, pontos e badges</sub></td>
-<td width="50%"><img src="screenshots/06-painel-nutricionista.png" /><br><sub>Painel do nutricionista: visão e edição de cada paciente</sub></td>
+<td width="50%"></td>
+</tr>
+</table>
+
+## Visão do nutricionista
+
+<table>
+<tr>
+<td width="50%"><img src="screenshots/06-painel-nutricionista.png" /><br><sub>Painel: visão geral do paciente, com atalho pra "ver como aluno"</sub></td>
+<td width="50%"><img src="screenshots/07-editar-dados.png" /><br><sub>Editar dados: métricas e próxima consulta</sub></td>
+</tr>
+<tr>
+<td width="50%"><img src="screenshots/08-refeicoes.png" /><br><sub>Editar refeições do plano alimentar</sub></td>
+<td width="50%"><img src="screenshots/09-treinos-edit.png" /><br><sub>Editar treinos da semana</sub></td>
 </tr>
 </table>
 
@@ -28,7 +43,8 @@ Protótipo de telas (sem backend, dados mockados) construído para servir de mat
 - **Evolução**: fotos comparativas, gráfico de peso, medidas corporais com variação, e histórico de avaliações físicas (bioimpedância, adipômetro, análise por IA)
 - **Treino**: semana de treino por grupo muscular, lista de exercícios com execução
 - **Prêmios**: sistema de pontos e nível, conquistas desbloqueáveis, badges e prêmios resgatáveis (camiseta, consulta extra, kit suplementos)
-- **Painel do nutricionista**: visão de cada paciente (peso, meta, % gordura, streak, pontos, próxima consulta), edição de métricas, refeições e treinos, com opção de "ver como aluno"
+- **Painel do nutricionista**: visão de cada paciente (peso, meta, % gordura, streak, pontos, próxima consulta), com atalho de "ver como aluno"
+- **Edição pelo nutricionista**: atualiza métricas do paciente e a próxima consulta, adiciona/remove refeições do plano alimentar (com kcal e macros por refeição) e monta o treino da semana dia a dia
 
 ## Stack
 
