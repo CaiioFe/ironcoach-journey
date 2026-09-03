@@ -11,6 +11,10 @@
 <td width="50%"><img src="screenshots/03-evolucao.png" /><br><sub>Evolução: comparativo de fotos e gráfico de peso</sub></td>
 <td width="50%"><img src="screenshots/04-treino.png" /><br><sub>Treino: semana por grupo muscular</sub></td>
 </tr>
+<tr>
+<td width="50%"><img src="screenshots/05-premios.png" /><br><sub>Prêmios: nível, pontos e badges</sub></td>
+<td width="50%"><img src="screenshots/06-painel-nutricionista.png" /><br><sub>Painel do nutricionista: visão e edição de cada paciente</sub></td>
+</tr>
 </table>
 
 ## Sobre
@@ -23,7 +27,8 @@ Protótipo de telas (sem backend, dados mockados) construído para servir de mat
 - **Dieta**: refeições do dia com horário, calorias e macros, opção de substituir alimento e avaliar a refeição
 - **Evolução**: fotos comparativas, gráfico de peso, medidas corporais com variação, e histórico de avaliações físicas (bioimpedância, adipômetro, análise por IA)
 - **Treino**: semana de treino por grupo muscular, lista de exercícios com execução
-- **Prêmios**: sistema de pontos e nível, conquistas desbloqueáveis e prêmios resgatáveis (camiseta, consulta extra, kit suplementos)
+- **Prêmios**: sistema de pontos e nível, conquistas desbloqueáveis, badges e prêmios resgatáveis (camiseta, consulta extra, kit suplementos)
+- **Painel do nutricionista**: visão de cada paciente (peso, meta, % gordura, streak, pontos, próxima consulta), edição de métricas, refeições e treinos, com opção de "ver como aluno"
 
 ## Stack
 
