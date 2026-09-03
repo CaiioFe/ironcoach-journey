@@ -4,12 +4,14 @@ import { motion } from "framer-motion";
 import { Pencil, Eye, Plus, Trash2, Scale, Target, Activity, Flame, Star } from "lucide-react";
 import { useAppStore, progressoObjetivo } from "@/store/useAppStore";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription } from "@/components/ui/sheet";
+import { useIsMobile } from "@/hooks/use-mobile";
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/nutri/")({ component: NutriPanel });
 
 function NutriPanel() {
   const navigate = useNavigate();
+  const isMobile = useIsMobile();
   const paciente = useAppStore((s) => s.paciente);
   const refeicoes = useAppStore((s) => s.refeicoes);
   const treinos = useAppStore((s) => s.treinos);
@@ -66,16 +68,26 @@ function NutriPanel() {
   );
 
   return (
-    <div className="pb-8">
-      <div className="px-5 pt-6 pb-4 pr-16">
-        <h1 className="text-2xl font-bold">Olá, Gabriel 👋</h1>
-        <p className="text-sm text-muted-foreground mt-1">Painel do nutricionista</p>
+    <div className="pb-8 lg:pb-12">
+      <div className="px-5 lg:px-0 pt-6 pb-4 pr-16 lg:pr-0 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3">
+        <div>
+          <h1 className="text-2xl lg:text-3xl font-bold">Olá, Gabriel 👋</h1>
+          <p className="text-sm text-muted-foreground mt-1">Painel do nutricionista</p>
+        </div>
+        <div className="hidden lg:flex gap-2">
+          <button onClick={abrir} className="bg-primary text-primary-foreground font-bold py-2.5 px-4 rounded-xl flex items-center justify-center gap-2 text-sm hover:opacity-90 transition">
+            <Pencil className="size-4" /> Editar dados
+          </button>
+          <button onClick={verComoAluno} className="bg-card border border-border font-bold py-2.5 px-4 rounded-xl flex items-center justify-center gap-2 text-sm hover:bg-secondary transition">
+            <Eye className="size-4" /> Ver como aluno
+          </button>
+        </div>
       </div>
 
-      <div className="px-4">
+      <div className="px-4 lg:px-0 lg:grid lg:grid-cols-3 lg:gap-6">
         <motion.div
           initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
-          className="relative overflow-hidden rounded-3xl border border-primary/30 bg-gradient-to-br from-primary/15 via-card to-card p-5 glow-primary"
+          className="relative overflow-hidden rounded-3xl border border-primary/30 bg-gradient-to-br from-primary/15 via-card to-card p-5 glow-primary lg:col-span-1"
         >
           <div className="flex items-center gap-3 mb-4">
             <div className="size-12 rounded-full gradient-primary grid place-items-center text-primary-foreground font-bold">
@@ -119,31 +131,33 @@ function NutriPanel() {
             </div>
           </div>
         </motion.div>
-      </div>
 
-      <div className="px-4 mt-4 grid grid-cols-2 gap-3">
-        <button onClick={abrir} className="bg-primary text-primary-foreground font-bold py-3 rounded-xl flex items-center justify-center gap-2 text-sm">
-          <Pencil className="size-4" /> Editar dados
-        </button>
-        <button onClick={verComoAluno} className="bg-card border border-border font-bold py-3 rounded-xl flex items-center justify-center gap-2 text-sm">
-          <Eye className="size-4" /> Ver como aluno
-        </button>
-      </div>
+        <div className="lg:col-span-2 lg:grid lg:grid-rows-[auto_1fr] lg:gap-4">
+          <div className="px-0 mt-4 lg:mt-0 grid grid-cols-2 gap-3 lg:hidden">
+            <button onClick={abrir} className="bg-primary text-primary-foreground font-bold py-3 rounded-xl flex items-center justify-center gap-2 text-sm">
+              <Pencil className="size-4" /> Editar dados
+            </button>
+            <button onClick={verComoAluno} className="bg-card border border-border font-bold py-3 rounded-xl flex items-center justify-center gap-2 text-sm">
+              <Eye className="size-4" /> Ver como aluno
+            </button>
+          </div>
 
-      <div className="px-4 mt-4">
-        <div className="bg-card border border-border rounded-2xl p-4">
-          <p className="text-[11px] uppercase tracking-wider text-muted-foreground font-semibold mb-3">Próxima consulta</p>
-          <p className="text-sm font-semibold">
-            {paciente.proxConsulta.diaSemana} · {paciente.proxConsulta.hora} · {paciente.proxConsulta.duracao}min
-          </p>
+          <div className="mt-4 lg:mt-0">
+            <div className="bg-card border border-border rounded-2xl p-4 h-full">
+              <p className="text-[11px] uppercase tracking-wider text-muted-foreground font-semibold mb-3">Próxima consulta</p>
+              <p className="text-sm font-semibold">
+                {paciente.proxConsulta.diaSemana} · {paciente.proxConsulta.hora} · {paciente.proxConsulta.duracao}min
+              </p>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div className="px-4 mt-4">
-        <p className="text-xs uppercase tracking-wider text-muted-foreground font-semibold mb-2 px-1">
+      <div className="px-4 lg:px-0 mt-4">
+        <p className="text-xs uppercase tracking-wider text-muted-foreground font-semibold mb-2 px-1 lg:px-0">
           Plano alimentar · {refeicoes.length} refeições
         </p>
-        <div className="space-y-2">
+        <div className="space-y-2 lg:space-y-0 lg:grid lg:grid-cols-2 xl:grid-cols-3 lg:gap-3">
           {refeicoes.map((r) => (
             <div key={r.id} className="bg-card border border-border rounded-xl p-3 flex items-center gap-3">
               <div className="size-9 rounded-lg bg-secondary grid place-items-center text-[10px] font-bold num">
@@ -161,7 +175,14 @@ function NutriPanel() {
       </div>
 
       <Sheet open={open} onOpenChange={setOpen}>
-        <SheetContent side="bottom" className="bg-card border-border rounded-t-3xl max-h-[92vh] overflow-y-auto">
+        <SheetContent
+          side={isMobile ? "bottom" : "right"}
+          className={
+            isMobile
+              ? "bg-card border-border rounded-t-3xl max-h-[92vh] overflow-y-auto"
+              : "bg-card border-border w-full sm:max-w-lg overflow-y-auto"
+          }
+        >
           <SheetHeader>
             <SheetTitle>Editar dados do paciente</SheetTitle>
             <SheetDescription>Atualize métricas, próxima consulta, refeições e treinos.</SheetDescription>

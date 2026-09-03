@@ -145,11 +145,18 @@ function RootComponent() {
 
   const onLogin = location.pathname === "/login";
   const showLogout = role !== null && !onLogin;
+  const isNutriDash = role === "nutri";
 
   return (
     <QueryClientProvider client={queryClient}>
       <div className="min-h-screen bg-background">
-        <div className="mx-auto w-full max-w-[430px] min-h-screen relative pb-28 border-x border-border/40">
+        <div
+          className={
+            isNutriDash
+              ? "mx-auto w-full max-w-6xl min-h-screen relative px-4 sm:px-6 lg:px-10"
+              : "mx-auto w-full max-w-[430px] min-h-screen relative pb-28 border-x border-border/40"
+          }
+        >
           {showLogout && (
             <button
               onClick={() => { logout(); navigate({ to: "/login" }); }}
